@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: cimg/openjdk:11-jdk
+      - image: circle/openjdk:11-jdk
     steps:
       - checkout
       - run:
@@ -10,7 +10,7 @@ jobs:
           command: mvn clean install
   test:
     docker:
-      - image: cimg/openjdk:11-jdk
+      - image: circleci/openjdk:11-jdk
     steps:
       - checkout
       - run:
