@@ -93,26 +93,85 @@ public class IPokedexTest {
 
 
     @Test
-    public void testGetPokemonWithValidIndex() {
+    public void testAddAndGetPokemon2() throws PokedexException {
+        // Mock des dépendances
+        IPokemonMetadataProvider metadataProvider = mock(IPokemonMetadataProvider.class);
+        IPokemonFactory pokemonFactory = mock(IPokemonFactory.class);
+
+        // Initialisation du Pokédex
+        Pokedex pokedex = new Pokedex(metadataProvider, pokemonFactory);
+
+        // Création des Pokémon
+        Pokemon bulbizarre = new Pokemon(0, "Bulbizarre", 126, 126, 90, 500, 100, 4000, 3, 80.0);
+        Pokemon aquali = new Pokemon(1, "Aquali", 186, 168, 260, 1500, 200, 8000, 4, 95.0);
+
+        // Ajout des Pokémon
+        int index1 = pokedex.addPokemon(bulbizarre);
+        int index2 = pokedex.addPokemon(aquali);
+
+        // Vérifications sur l'ajout
+        assertEquals(0, index1);
+        assertEquals(1, index2);
+        assertEquals(2, pokedex.size());
+
+        // Récupération et vérification des Pokémon
+        Pokemon result1 = pokedex.getPokemon(0);
+        Pokemon result2 = pokedex.getPokemon(1);
+
+        assertEquals(bulbizarre, result1);
+        assertEquals(aquali, result2);
+    }
+
+    @Test
+    public void testGetPokemonWithInvalidIndex() {
+        // Mock des dépendances
+        IPokemonMetadataProvider metadataProvider = mock(IPokemonMetadataProvider.class);
+        IPokemonFactory pokemonFactory = mock(IPokemonFactory.class);
+
+        // Initialisation du Pokédex
+        Pokedex pokedex = new Pokedex(metadataProvider, pokemonFactory);
+
+        // Test des indices invalides
         try {
-            Pokemon bulbizarre = new Pokemon(0, "Bulbizarre", 126, 126, 90, 500, 100, 4000, 3, 80.0);
-            Pokemon aquali = new Pokemon(1, "Aquali", 186, 168, 260, 1500, 200, 8000, 4, 95.0);
-
-            pokedex.addPokemon(bulbizarre);
-            pokedex.addPokemon(aquali);
-
-            Pokemon result = pokedex.getPokemon(1);
-
-            assertEquals(aquali, result);
+            pokedex.getPokemon(-1);
+            fail("Expected PokedexException for negative index.");
         } catch (PokedexException e) {
-            fail("Exception should not be thrown for valid index: " + e.getMessage());
+            assertEquals("Invalid Pokémon index: -1", e.getMessage());
+        }
+
+        try {
+            pokedex.getPokemon(100);
+            fail("Expected PokedexException for out-of-bound index.");
+        } catch (PokedexException e) {
+            assertEquals("Invalid Pokémon index: 100", e.getMessage());
         }
     }
 
     @Test
-    public void testGetPokemonsWhenEmpty() {
-        List<Pokemon> result = pokedex.getPokemons();
-        assertTrue(result.isEmpty());
+    public void testGetPokemonsSorted() {
+        // Mock des dépendances
+        IPokemonMetadataProvider metadataProvider = mock(IPokemonMetadataProvider.class);
+        IPokemonFactory pokemonFactory = mock(IPokemonFactory.class);
+
+        // Initialisation du Pokédex
+        Pokedex pokedex = new Pokedex(metadataProvider, pokemonFactory);
+
+        // Ajout des Pokémon
+        Pokemon bulbizarre = new Pokemon(0, "Bulbizarre", 126, 126, 90, 500, 100, 4000, 3, 80.0);
+        Pokemon aquali = new Pokemon(1, "Aquali", 186, 168, 260, 1500, 200, 8000, 4, 95.0);
+
+        pokedex.addPokemon(bulbizarre);
+        pokedex.addPokemon(aquali);
+
+        // Tri par nom
+        List<Pokemon> sortedByName = pokedex.getPokemons(PokemonComparators.NAME);
+        assertEquals(aquali, sortedByName.get(0));
+        assertEquals(bulbizarre, sortedByName.get(1));
+
+        // Tri par CP
+        List<Pokemon> sortedByCP = pokedex.getPokemons(PokemonComparators.CP);
+        assertEquals(aquali, sortedByCP.get(0));
+        assertEquals(bulbizarre, sortedByCP.get(1));
     }
 
 }
