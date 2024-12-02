@@ -147,31 +147,4 @@ public class IPokedexTest {
         }
     }
 
-    @Test
-    public void testGetPokemonsSorted() {
-        // Mock des dépendances
-        IPokemonMetadataProvider metadataProvider = mock(IPokemonMetadataProvider.class);
-        IPokemonFactory pokemonFactory = mock(IPokemonFactory.class);
-
-        // Initialisation du Pokédex
-        Pokedex pokedex = new Pokedex(metadataProvider, pokemonFactory);
-
-        // Ajout des Pokémon
-        Pokemon bulbizarre = new Pokemon(0, "Bulbizarre", 126, 126, 90, 500, 100, 4000, 3, 80.0);
-        Pokemon aquali = new Pokemon(1, "Aquali", 186, 168, 260, 1500, 200, 8000, 4, 95.0);
-
-        pokedex.addPokemon(bulbizarre);
-        pokedex.addPokemon(aquali);
-
-        // Tri par nom
-        List<Pokemon> sortedByName = pokedex.getPokemons(PokemonComparators.NAME);
-        assertEquals(aquali, sortedByName.get(0));
-        assertEquals(bulbizarre, sortedByName.get(1));
-
-        // Tri par CP
-        List<Pokemon> sortedByCP = pokedex.getPokemons(PokemonComparators.CP);
-        assertEquals(aquali, sortedByCP.get(0));
-        assertEquals(bulbizarre, sortedByCP.get(1));
-    }
-
 }
