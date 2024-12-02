@@ -24,18 +24,18 @@ public class IPokedexTest {
 
     @Test
     public void testAddAndGetPokemonMock() throws PokedexException {
-        // Mock d'un Pokémon
+
         Pokemon bulbizarre = new Pokemon(0, "Bulbizarre", 126, 126, 90, 613, 64, 4000, 4, 56.0);
 
-        // Configuration du comportement attendu
+
         Mockito.when(pokedex.addPokemon(bulbizarre)).thenReturn(0);
         Mockito.when(pokedex.getPokemon(0)).thenReturn(bulbizarre);
 
-        // Test de l'ajout
+
         int index = pokedex.addPokemon(bulbizarre);
         assertEquals(0, index);
 
-        // Test de la récupération
+
         Pokemon result = pokedex.getPokemon(0);
         assertNotNull(result);
         assertEquals("Bulbizarre", result.getName());
@@ -43,7 +43,7 @@ public class IPokedexTest {
 
     @Test
     public void testGetPokemonsMock() {
-        // Mock d'une liste de Pokémon
+
         Pokemon bulbizarre = new Pokemon(0, "Bulbizarre", 126, 126, 90, 613, 64, 4000, 4, 56.0);
         Pokemon aquali = new Pokemon(133, "Aquali", 186, 168, 260, 2729, 202, 5000, 4, 100.0);
 
@@ -52,7 +52,7 @@ public class IPokedexTest {
         mockPokemonList.add(aquali);
 
         Mockito.when(pokedex.getPokemons()).thenReturn(mockPokemonList);
-        // Test de la récupération de tous les Pokémon
+
         List<Pokemon> pokemons = pokedex.getPokemons();
         assertEquals(2, pokemons.size());
         assertEquals("Bulbizarre", pokemons.get(0).getName());
@@ -92,6 +92,27 @@ public class IPokedexTest {
     }
 
 
+    @Test
+    public void testGetPokemonWithValidIndex() {
+        try {
+            Pokemon bulbizarre = new Pokemon(0, "Bulbizarre", 126, 126, 90, 500, 100, 4000, 3, 80.0);
+            Pokemon aquali = new Pokemon(1, "Aquali", 186, 168, 260, 1500, 200, 8000, 4, 95.0);
 
+            pokedex.addPokemon(bulbizarre);
+            pokedex.addPokemon(aquali);
+
+            Pokemon result = pokedex.getPokemon(1);
+
+            assertEquals(aquali, result);
+        } catch (PokedexException e) {
+            fail("Exception should not be thrown for valid index: " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void testGetPokemonsWhenEmpty() {
+        List<Pokemon> result = pokedex.getPokemons();
+        assertTrue(result.isEmpty());
+    }
 
 }
