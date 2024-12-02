@@ -23,7 +23,7 @@ public class IPokedexTest {
     private IPokedex pokedex;
 
     @Test
-    public void testAddAndGetPokemon() throws PokedexException {
+    public void testAddAndGetPokemonMock() throws PokedexException {
         // Mock d'un Pokémon
         Pokemon bulbizarre = new Pokemon(0, "Bulbizarre", 126, 126, 90, 613, 64, 4000, 4, 56.0);
 
@@ -42,7 +42,7 @@ public class IPokedexTest {
     }
 
     @Test
-    public void testGetPokemons() {
+    public void testGetPokemonsMock() {
         // Mock d'une liste de Pokémon
         Pokemon bulbizarre = new Pokemon(0, "Bulbizarre", 126, 126, 90, 613, 64, 4000, 4, 56.0);
         Pokemon aquali = new Pokemon(133, "Aquali", 186, 168, 260, 2729, 202, 5000, 4, 100.0);
@@ -58,6 +58,40 @@ public class IPokedexTest {
         assertEquals("Bulbizarre", pokemons.get(0).getName());
         assertEquals("Aquali", pokemons.get(1).getName());
     }
+
+    @Test
+    public void testAddAndGetPokemon() throws PokedexException {
+        IPokemonMetadataProvider metadataProvider = mock(IPokemonMetadataProvider.class);
+        IPokemonFactory pokemonFactory = mock(IPokemonFactory.class);
+
+        Pokedex pokedex = new Pokedex(metadataProvider, pokemonFactory);
+        Pokemon pokemon = new Pokemon(1, "Bulbizarre", 126, 126, 90, 500, 100, 4000, 3, 80.0);
+
+        int index = pokedex.addPokemon(pokemon);
+
+        assertEquals(0, index);
+        assertEquals(pokemon, pokedex.getPokemon(index));
+    }
+
+    @Test
+    public void testGetPokemons() {
+        IPokemonMetadataProvider metadataProvider = mock(IPokemonMetadataProvider.class);
+        IPokemonFactory pokemonFactory = mock(IPokemonFactory.class);
+
+        Pokedex pokedex = new Pokedex(metadataProvider, pokemonFactory);
+        Pokemon bulbizarre = new Pokemon(0, "Bulbizarre", 126, 126, 90, 500, 100, 4000, 3, 80.0);
+        Pokemon aquali = new Pokemon(1, "Aquali", 186, 168, 260, 1500, 200, 8000, 4, 95.0);
+
+        pokedex.addPokemon(bulbizarre);
+        pokedex.addPokemon(aquali);
+
+        List<Pokemon> pokemons = pokedex.getPokemons();
+        assertEquals(2, pokemons.size());
+        assertTrue(pokemons.contains(bulbizarre));
+        assertTrue(pokemons.contains(aquali));
+    }
+
+
 
 
 }

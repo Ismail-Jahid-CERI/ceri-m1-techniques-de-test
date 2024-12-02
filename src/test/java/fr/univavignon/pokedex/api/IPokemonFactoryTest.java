@@ -36,4 +36,19 @@ public class IPokemonFactoryTest {
         assertEquals(613, result.getCp());
         assertEquals(56.0, result.getIv(), 0.001);
     }
+
+    @Test
+    public void testCreatePokemon2() {
+        PokemonFactory factory = new PokemonFactory();
+
+        Pokemon pokemon = factory.createPokemon(1, 500, 100, 4000, 3);
+
+        assertNotNull(pokemon);
+        assertEquals(1, pokemon.getIndex());
+        assertEquals(500, pokemon.getCp());
+        assertEquals(100, pokemon.getHp());
+        assertEquals(4000, pokemon.getDust());
+        assertEquals(3, pokemon.getCandy());
+        assertTrue(pokemon.getIv() >= 0 && pokemon.getIv() <= 100);
+    }
 }
