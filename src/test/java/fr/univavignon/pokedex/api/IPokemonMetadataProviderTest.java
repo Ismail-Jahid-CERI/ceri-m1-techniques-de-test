@@ -6,6 +6,10 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.junit.Assert.*;
 
 public class IPokemonMetadataProviderTest {
@@ -30,4 +34,5 @@ public class IPokemonMetadataProviderTest {
         assertEquals(126, result.getAttack());
         assertEquals(90, result.getStamina());
     }
+
 }
