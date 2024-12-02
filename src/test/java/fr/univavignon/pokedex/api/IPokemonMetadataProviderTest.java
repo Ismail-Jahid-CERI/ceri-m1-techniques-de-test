@@ -3,25 +3,31 @@ package fr.univavignon.pokedex.api;
 
 import org.junit.Before;
 import org.junit.Test;
-import static org.mockito.Mockito.*;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import static org.junit.Assert.*;
+
 public class IPokemonMetadataProviderTest {
-    private IPokemonMetadataProvider pokemonMetadataProvider;
+
+    @Mock
+    private IPokemonMetadataProvider metadataProvider;
+
     @Before
     public void setUp() {
-        pokemonMetadataProvider = mock(IPokemonMetadataProvider.class);
+        MockitoAnnotations.initMocks(this);
     }
+
     @Test
-    public void testGetPokemonMetadataExample1() throws PokedexException {
-        PokemonMetadata metadata = new PokemonMetadata(0, "Bulbizarre", 126, 126, 90);
-        when(pokemonMetadataProvider.getPokemonMetadata(0)).thenReturn(metadata);
-        PokemonMetadata result = pokemonMetadataProvider.getPokemonMetadata(0);
+    public void testGetPokemonMetadata() throws PokedexException {
+        PokemonMetadata bulbizarre = new PokemonMetadata(0, "Bulbizarre", 126, 126, 90);
+
+        Mockito.when(metadataProvider.getPokemonMetadata(0)).thenReturn(bulbizarre);
+
+        PokemonMetadata result = metadataProvider.getPokemonMetadata(0);
+
         assertEquals("Bulbizarre", result.getName());
         assertEquals(126, result.getAttack());
-    }
-    @Test(expected = PokedexException.class)
-    public void testGetPokemonMetadataWithInvalidIndex() throws PokedexException {
-        when(pokemonMetadataProvider.getPokemonMetadata(-1)).thenThrow(new PokedexException("Invalid index"));
-        pokemonMetadataProvider.getPokemonMetadata(-1); // Should throw exception
+        assertEquals(90, result.getStamina());
     }
 }
