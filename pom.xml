@@ -65,13 +65,13 @@
                     <consoleOutput>true</consoleOutput>
                     <failsOnError>true</failsOnError>
                     <outputFile>target/site/checkstyle-result.xml</outputFile>
+                    <reportOutputFile>target/site/checkstyle-result.html</reportOutputFile>
                 </configuration>
                 <executions>
                     <execution>
                         <phase>validate</phase>
                         <goals>
                             <goal>check</goal>
-                            <goal>checkstyle-report</goal>
                         </goals>
                     </execution>
                 </executions>
