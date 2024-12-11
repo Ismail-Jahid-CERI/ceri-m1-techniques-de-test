@@ -64,8 +64,6 @@
                     <encoding>UTF-8</encoding>
                     <consoleOutput>true</consoleOutput>
                     <failsOnError>true</failsOnError>
-                    <outputFile>target/site/checkstyle-result.xml</outputFile>
-                    <reportOutputFile>target/site/checkstyle-result.html</reportOutputFile>
                 </configuration>
                 <executions>
                     <execution>
@@ -76,7 +74,6 @@
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
     </build>
     <dependencies>
