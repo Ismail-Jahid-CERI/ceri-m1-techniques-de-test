@@ -147,6 +147,28 @@ public class IPokedexTest {
         }
     }
 
+    @Test
+    public void testCreatePokemon() {
+        // Mock de IPokemonFactory
+        IPokemonFactory pokemonFactory = mock(IPokemonFactory.class);
+        IPokemonMetadataProvider metadataProvider = mock(IPokemonMetadataProvider.class);
+
+        Pokedex pokedex = new Pokedex(metadataProvider, pokemonFactory);
+
+
+        Pokemon expectedPokemon = new Pokemon(1, "Aquali", 186, 168, 260, 1500, 200, 8000, 4, 95.0);
+        when(pokemonFactory.createPokemon(1, 186, 168, 1500, 200)).thenReturn(expectedPokemon);
+
+
+        Pokemon createdPokemon = pokedex.createPokemon(1, 186, 168, 1500, 200);
+
+
+        assertNotNull(createdPokemon);
+        assertEquals(expectedPokemon, createdPokemon);
+        verify(pokemonFactory).createPokemon(1, 186, 168, 1500, 200);
+    }
+
+
 
 
 }
