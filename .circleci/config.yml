@@ -21,8 +21,8 @@ jobs:
       - run:
           name: Run Checkstyle and generate HTML report
           command: |
-            mvn checkstyle:checkstyle &&  # Exécute Checkstyle
-            mvn checkstyle:checkstyle-report  # Génére le rapport HTML
+            mvn clean install
+            mvn checkstyle:check
       - store_artifacts:
           path: target/site
           destination: checkstyle-report
