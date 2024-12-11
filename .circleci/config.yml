@@ -19,13 +19,8 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Run Checkstyle and generate HTML report
-          command: >
-            mvn checkstyle:checkstyle &&
-            mvn checkstyle:checkstyle-report
-      - store_artifacts:
-          path: target/site
-          destination: checkstyle-report
+          name: Run Checkstyle
+          command: mvn checkstyle:check
 
   test:
     docker:

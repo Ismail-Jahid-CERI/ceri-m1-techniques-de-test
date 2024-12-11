@@ -64,21 +64,16 @@
                     <encoding>UTF-8</encoding>
                     <consoleOutput>true</consoleOutput>
                     <failsOnError>true</failsOnError>
-                    <outputFile>target/site/checkstyle-result.xml</outputFile>
-                    <linkXRef>false</linkXRef>
                 </configuration>
                 <executions>
                     <execution>
-                        <id>validate</id>
                         <phase>validate</phase>
                         <goals>
                             <goal>check</goal>
-                            <goal>checkstyle-report</goal>
                         </goals>
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
     </build>
     <dependencies>
