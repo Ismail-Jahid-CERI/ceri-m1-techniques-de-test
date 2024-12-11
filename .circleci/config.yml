@@ -22,18 +22,13 @@ jobs:
           name: Run Checkstyle
           command: mvn checkstyle:check
       - run:
-          name: Check Checkstyle results and generate badge
+          name: Generate Checkstyle Status JSON
           command: |
             if grep -q "<error" target/site/checkstyle-result.xml; then
-              curl -s https://img.shields.io/badge/Checkstyle-Failed-red?style=flat -o checkstyle-badge.svg
+              echo '{"status": "échoué"}' > checkstyle-status.json
             else
-              curl -s https://img.shields.io/badge/Checkstyle-Passed-brightgreen?style=flat -o checkstyle-badge.svg
+              echo '{"status": "réussi"}' > checkstyle-status.json
             fi
-      - run:
-          name: Expose API with Checkstyle Status
-          command: |
-            python3 -m http.server 8000 --bind 0.0.0.0 &
-            sleep 3
       - store_artifacts:
           path: checkstyle-status.json
           destination: checkstyle-status
