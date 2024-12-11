@@ -3,7 +3,7 @@
 # JAHID Ismail
 ## Groupe : G1 Classique
 
-[![CircleCI](https://dl.circleci.com/status-badge/img/gh/Ismail-Jahid-CERI/ceri-m1-techniques-de-test/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/Ismail-Jahid-CERI/ceri-m1-techniques-de-test/tree/master)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/Ismail-Jahid-CERI/ceri-m1-techniques-de-test/tree/master.svg?style=svg)](https://app.circleci.com/pipelines/github/Ismail-Jahid-CERI/ceri-m1-techniques-de-test/latest)
 
 [![codecov](https://codecov.io/github/Ismail-Jahid-CERI/ceri-m1-techniques-de-test/graph/badge.svg?token=JV7PD3SE1Y)](https://codecov.io/github/Ismail-Jahid-CERI/ceri-m1-techniques-de-test)
 
