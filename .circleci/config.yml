@@ -12,6 +12,16 @@ jobs:
       - run:
           name: Build with Maven
           command: mvn clean install
+
+  checkstyle:
+    docker:
+      - image: cimg/openjdk:11.0
+    steps:
+      - checkout
+      - run:
+          name: Run Checkstyle
+          command: mvn checkstyle:check
+
   test:
     docker:
       - image: cimg/openjdk:11.0
@@ -28,6 +38,9 @@ workflows:
   build_and_test:
     jobs:
       - build
-      - test:
+      - checkstyle:
           requires:
             - build
+      - test:
+          requires:
+            - checkstyle
