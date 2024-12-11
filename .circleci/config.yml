@@ -29,24 +29,24 @@ jobs:
             else
               echo '{"status": "réussi"}' > checkstyle-status.json
             fi
-      - run:
-          name: Set up Git configuration
-          command: |
-            git config --global user.name "circleci[bot]"
-            git config --global user.email "circleci[bot]@users.noreply.github.com"
-      - run:
-          name: Create and switch to `gh-pages` branch if it doesn't exist
-          ommand: |
-                  # Vérifie si la branche gh-pages existe, si ce n'est pas le cas, crée-la
-                  git fetch origin gh-pages || git checkout --orphan gh-pages
-                  git rm -rf .  # Supprime les fichiers existants dans la branche
-                  git add checkstyle-status.json
-                  git commit -m "Update Checkstyle status"
-                  git push origin gh-pages
       - store_artifacts:
           path: checkstyle-status.json
           destination: checkstyle-status
+      - run:
+          name: Commit Checkstyle Status JSON to GitHub Pages
+          command: |
+            git config --global user.name "circleci[bot]"
+            git config --global user.email "circleci[bot]@users.noreply.github.com"
+            git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}.git
 
+           
+            git fetch origin gh-pages || git checkout --orphan gh-pages
+            git rm -rf .  # Supprime les fichiers existants dans la branche gh-pages
+
+          
+            git add checkstyle-status.json
+            git commit -m "Update Checkstyle status"
+            git push origin gh-pages
 
 
   test:
