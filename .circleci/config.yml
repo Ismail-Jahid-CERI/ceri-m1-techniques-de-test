@@ -29,9 +29,14 @@ jobs:
             else
               curl -s https://img.shields.io/badge/Checkstyle-Passed-brightgreen?style=flat -o checkstyle-badge.svg
             fi
+      - run:
+          name: Expose API with Checkstyle Status
+          command: |
+            python3 -m http.server 8000 --bind 0.0.0.0 &
+            sleep 3
       - store_artifacts:
-          path: checkstyle-badge.svg
-          destination: checkstyle-badge
+          path: checkstyle-status.json
+          destination: checkstyle-status
 
   test:
     docker:
