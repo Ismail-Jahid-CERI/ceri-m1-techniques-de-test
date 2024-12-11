@@ -41,6 +41,11 @@ jobs:
             echo "Checkstyle: Passed" > checkstyle-badge.txt
           fi
 
+      - run:
+        name: Display Checkstyle Status JSON
+        command: cat checkstyle-status.json
+
+
 
       - name: Commit Checkstyle Badge to GitHub Pages
         run: |
