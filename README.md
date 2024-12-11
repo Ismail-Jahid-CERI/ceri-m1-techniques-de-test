@@ -9,6 +9,9 @@
 
 ![Checkstyle Status](https://dl.circleci.com/status-badge/img/gh/Ismail-Jahid-CERI/ceri-m1-techniques-de-test/tree/master.svg?style=svg&workflow=checkstyle_workflow)
 
+![Checkstyle](https://github.com/Ismail-Jahid-CERI/ceri-m1-techniques-de-test/actions/workflows/checkstyle.yml/badge.svg)
+
+
 
 
 
