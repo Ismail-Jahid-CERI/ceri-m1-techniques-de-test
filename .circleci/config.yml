@@ -21,6 +21,17 @@ jobs:
       - run:
           name: Run Checkstyle
           command: mvn checkstyle:check
+      - run:
+          name: Check Checkstyle results and generate badge
+          command: |
+            if grep -q "<error" target/site/checkstyle-result.xml; then
+              curl -s https://img.shields.io/badge/Checkstyle-Failed-red?style=flat -o checkstyle-badge.svg
+            else
+              curl -s https://img.shields.io/badge/Checkstyle-Passed-brightgreen?style=flat -o checkstyle-badge.svg
+            fi
+      - store_artifacts:
+          path: checkstyle-badge.svg
+          destination: checkstyle-badge
 
   test:
     docker:
