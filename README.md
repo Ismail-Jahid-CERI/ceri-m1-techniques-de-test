@@ -6,6 +6,8 @@
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/Ismail-Jahid-CERI/ceri-m1-techniques-de-test/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/Ismail-Jahid-CERI/ceri-m1-techniques-de-test/tree/master)
 [![codecov](https://codecov.io/github/Ismail-Jahid-CERI/ceri-m1-techniques-de-test/graph/badge.svg?token=JV7PD3SE1Y)](https://codecov.io/github/Ismail-Jahid-CERI/ceri-m1-techniques-de-test)
 [![Checkstyle](https://dl.circleci.com/status-badge/img/gh/Ismail-Jahid-CERI/ceri-m1-techniques-de-test/tree/master.svg?style=svg&workflow=checkstyle_workflow)](https://dl.circleci.com/status-badge/redirect/gh/Ismail-Jahid-CERI/ceri-m1-techniques-de-test/tree/master?workflow=checkstyle_workflow)
+[Checkstyle Report](https://ismail-jahid-ceri.github.io/ceri-m1-techniques-de-test/checkstyle-result.html)
+
 
 
 
