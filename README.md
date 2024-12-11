@@ -7,7 +7,8 @@
 
 [![codecov](https://codecov.io/github/Ismail-Jahid-CERI/ceri-m1-techniques-de-test/graph/badge.svg?token=JV7PD3SE1Y)](https://codecov.io/github/Ismail-Jahid-CERI/ceri-m1-techniques-de-test)
 
-![Checkstyle Status](https://<circleci-project-link>/artifacts?artifact-name=checkstyle-badge.svg)
+![Checkstyle Status](https://dl.circleci.com/status-badge/img/gh/Ismail-Jahid-CERI/ceri-m1-techniques-de-test/tree/master.svg?style=svg&workflow=checkstyle_workflow)
+
 
 
 
