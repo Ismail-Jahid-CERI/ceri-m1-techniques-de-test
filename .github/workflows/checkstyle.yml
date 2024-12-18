@@ -1,4 +1,4 @@
-name: Checkstyle
+name: Generate and Deploy Checkstyle Status
 
 on:
   push:
@@ -8,38 +8,37 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+
 jobs:
-  checkstyle:
-    docker:
-      - image: cimg/openjdk:11.0
+  deploy_checkstyle_status:
+    runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - run:
-            name: Run Checkstyle
-            command: mvn checkstyle:check
-      - run:
-            name: Generate Checkstyle Status JSON
-            command: |
-              if grep -q "<error" target/site/checkstyle-result.xml; then
-                echo '{"status": "échoué"}' > checkstyle-status.json
-              else
-                echo '{"status": "réussi"}' > checkstyle-status.json
-              fi
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
 
+      - name: Run Checkstyle
+        run: mvn checkstyle:check
 
-      - name: Display Checkstyle Status JSON
-        run: cat checkstyle-status.json
-
-
-
-      - name: Commit Checkstyle Badge to GitHub Pages
+      - name: Generate Checkstyle Status JSON
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git remote set-url origin https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}.git
-          git checkout gh-pages || git checkout --orphan gh-pages
-          git add checkstyle-status.json
-          git commit -m "Update Checkstyle status"
-          git push origin gh-pages
+          if grep -q "<error" target/site/checkstyle-result.xml; then
+            echo '{"status": "échec"}' > checkstyle-status.json
+          else
+            echo '{"status": "réussi"}' > checkstyle-status.json
+          fi
+
+      - name: Commit Checkstyle Status to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./checkstyle-status.json
+          destination_dir: checkstyle-status
