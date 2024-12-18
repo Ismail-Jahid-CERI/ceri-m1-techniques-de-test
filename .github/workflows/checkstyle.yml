@@ -41,9 +41,9 @@ jobs:
             echo "Checkstyle: Passed" > checkstyle-badge.json
           fi
 
-      - run:
-        name: Display Checkstyle Status JSON
-        command: cat checkstyle-status.json
+
+      - name: Display Checkstyle Status JSON
+        run: cat checkstyle-status.json
 
 
 
