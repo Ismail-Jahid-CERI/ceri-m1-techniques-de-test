@@ -21,6 +21,27 @@ jobs:
       - run:
           name: Run Checkstyle
           command: mvn checkstyle:check
+      - run:
+          name: Generate Checkstyle Status JSON
+          command: |
+            if grep -q "<error" target/site/checkstyle-result.xml; then
+              echo '{"status": "échoué"}' > checkstyle-status.json
+            else
+              echo '{"status": "réussi"}' > checkstyle-status.json
+            fi
+      - store_artifacts:
+          path: checkstyle-status.json
+          destination: checkstyle-status
+      - run:
+          name: Commit Checkstyle Status JSON to GitHub Pages
+          command: |
+            git config --global user.name "circleci[bot]"
+            git config --global user.email "circleci[bot]@users.noreply.github.com"
+            git checkout gh-pages
+            git status  
+            git add checkstyle-status.json  
+            git commit -m "Update Checkstyle status"
+            git push origin gh-pages
 
   test:
     docker:
