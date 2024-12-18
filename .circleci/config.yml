@@ -33,27 +33,21 @@ jobs:
           path: checkstyle-status.json
           destination: checkstyle-status
 
-      # Configuration de l'utilisateur Git
+      #
       - run:
           name: Set Git user info for CircleCI
           command: |
             git config --global user.name "circleci[bot]"
-            git config --global user.email "circleci[bot]@users.noreply.github.com"  # Définir l'email de GitHub Actions
-
-      # Suppression du contenu de la branche gh-pages et ajout de checkstyle-status.json
+            git config --global user.email "circleci[bot]@users.noreply.github.com"
       - run:
           name: Clear gh-pages branch and add Checkstyle Status
           command: |
-            # Crée un commit "orphelin" pour nettoyer la branche gh-pages
+           
             git checkout --orphan gh-pages
-            git rm -rf .  # Supprime tous les fichiers de la branche gh-pages
-            git commit -m "Clear gh-pages"  # Commit pour effacer tout le contenu
-            git push origin gh-pages --force  # Force le push sur gh-pages pour le vider
-
-            # Ajoute checkstyle-status.json à gh-pages
+            git rm -rf .  
             git add checkstyle-status.json
             git commit -m "Add Checkstyle status"
-            git push origin gh-pages  # Push checkstyle-status.json sur gh-pages
+            git push origin gh-pages  
 
   test:
     docker:
