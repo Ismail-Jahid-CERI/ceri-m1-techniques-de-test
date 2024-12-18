@@ -36,9 +36,9 @@ jobs:
       - name: Generate Checkstyle Badge
         run: |
           if grep -q "<error" target/site/checkstyle-result.xml; then
-            echo "Checkstyle: Failed" > checkstyle-status.json
+            echo "Checkstyle: Failed" > checkstyle-badge.json
           else
-            echo "Checkstyle: Passed" > checkstyle-status.json
+            echo "Checkstyle: Passed" > checkstyle-badge.json
           fi
 
 
