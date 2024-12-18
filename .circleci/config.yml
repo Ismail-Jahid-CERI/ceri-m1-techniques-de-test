@@ -42,7 +42,8 @@ jobs:
       - run:
           name: Clear gh-pages branch and add Checkstyle Status
           command: |
-           
+            
+            git remote set-url origin https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}.git
             git checkout --orphan gh-pages
             git rm -rf .  
             git add checkstyle-status.json
