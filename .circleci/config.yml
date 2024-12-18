@@ -33,16 +33,11 @@ jobs:
           path: checkstyle-status.json
           destination: checkstyle-status
 
-      #
-      - run:
-          name: Set Git user info for CircleCI
-          command: |
+
+      - name: Set Git user info for CircleCI
+        run: |
             git config --global user.name "circleci[bot]"
             git config --global user.email "circleci[bot]@users.noreply.github.com"
-      - run:
-          name: Clear gh-pages branch and add Checkstyle Status
-          command: |
-            
             git remote set-url origin https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}.git
             git checkout --orphan gh-pages
             git rm -rf .  
