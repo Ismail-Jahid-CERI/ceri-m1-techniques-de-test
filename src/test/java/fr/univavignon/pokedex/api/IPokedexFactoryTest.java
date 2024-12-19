@@ -53,7 +53,7 @@ public class IPokedexFactoryTest {
         assertTrue(pokedex instanceof Pokedex);
 
         try {
-            pokedex.getPokemonMetadata(0); // Appelle la méthode pour s'assurer que metadataProvider est utilisé
+            pokedex.getPokemonMetadata(0);
             verify(metadataProvider, times(1)).getPokemonMetadata(0);
         } catch (Exception e) {
         }

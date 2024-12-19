@@ -49,6 +49,29 @@ jobs:
             git add checkstyle-status.json
             git commit -m "Add Checkstyle status"
             git push --force origin gh-pages
+
+  javadoc:
+    docker:
+      - image: cimg/openjdk:11.0
+    steps:
+      - checkout
+      - run:
+          name: Generate Javadoc
+          command: mvn javadoc:javadoc
+
+      - run:
+          name: Publish Javadoc to gh-pages
+          command: |
+            git config --global user.name "circleci[bot]"
+            git config --global user.email "circleci[bot]@users.noreply.github.com"
+            
+            git remote set-url origin https://x-access-token:$GH_TOKEN@github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git
+            
+            git checkout gh-pages 
+            cp -r target/site/apidocs/* .
+            git add .
+            git commit -m "Update Javadoc"
+            git push --force origin gh-pages
   
   
 
@@ -76,3 +99,7 @@ workflows:
   checkstyle_workflow:
     jobs:
       - checkstyle
+
+  javadoc_workflow:
+    jobs:
+      - javadoc
