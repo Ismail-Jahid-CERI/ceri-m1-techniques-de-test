@@ -1,0 +1,19 @@
+L'implémentation de RocketPokemonFactory a été intégrée et testée avec les tests existants. Les tests couvrent plus de 70% des cas d'utilisation et passent avec succès. Cependant, quelques points nécessitent des améliorations pour rendre l'implémentation plus performante et maintenable.
+
+Utilisation d'une Map immuable :
+
+    La map index2name est protégée contre les modifications grâce à Collections.unmodifiableMap, ce qui garantit la sécurité des données.
+
+Méthode inefficace pour générer des statistiques :
+
+    La méthode generateRandomStat utilise une boucle avec un million d'itérations, ce qui ralentit le programme sans réel avantage.
+    Une génération aléatoire directe (par exemple entre 0 et 100) serait plus rapide.
+
+Règles codées en dur :
+
+    Les comportements pour les indices négatifs ou non définis sont directement écrits dans le code.
+    Cela rend le programme moins flexible si de nouvelles règles doivent être ajoutées à l’avenir.
+
+Manque d’explicitation des erreurs :
+
+    Aucun message clair n’est retourné si un index invalide est utilisé (hors des indices prévus). Cela peut causer des confusions dans certains cas.
