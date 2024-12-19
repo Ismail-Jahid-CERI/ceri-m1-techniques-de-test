@@ -21,6 +21,7 @@ jobs:
       - run:
           name: Run Checkstyle
           command: mvn checkstyle:check
+
       - run:
           name: Generate Checkstyle Status JSON
           command: |
