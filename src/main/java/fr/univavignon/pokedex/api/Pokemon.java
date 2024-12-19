@@ -1,40 +1,42 @@
 package fr.univavignon.pokedex.api;
 
 /**
- * Pokemon POJO.
- * 
+ * Représente un Pokémon avec ses caractéristiques détaillées.
+ * Cette classe hérite de {@link PokemonMetadata} et ajoute des propriétés supplémentaires
+ * telles que les points de combat (CP), les points de vie (HP), et le pourcentage de perfection IV.
+ *
  * @author fv
  */
 public final class Pokemon extends PokemonMetadata {
 
-	/** Combat Point of the pokemon. **/
+	/** Points de combat (CP) du Pokémon. */
 	private final int cp;
 
-	/** HP of the pokemon. **/
+	/** Points de vie (HP) du Pokémon. */
 	private final int hp;
 
-	/** Required dust for upgrading this pokemon. **/
+	/** Quantité de poussière d'étoile requise pour améliorer ce Pokémon. */
 	private final int dust;
 
-	/** Required candy for upgrading this pokemon. **/
+	/** Quantité de bonbons requise pour améliorer ce Pokémon. */
 	private final int candy;
 
-	/** IV perfection percentage. **/
+	/** Pourcentage de perfection IV. */
 	private final double iv;
-	
+
 	/**
-	 * Default constructor.
-	 * 
-	 * @param index Pokemon index.
-	 * @param name Pokemon name.
-	 * @param attack Attack level.
-	 * @param defense Defense level.
-	 * @param stamina Stamina level.
-	 * @param cp Pokemon cp.
-	 * @param hp Pokemon hp.
-	 * @param dust Required dust for upgrading this pokemon.
-	 * @param candy Required candy for upgrading this pokemon.
-	 * @param iv IV perfection percentage.
+	 * Constructeur par défaut.
+	 *
+	 * @param index L'index du Pokémon.
+	 * @param name Le nom du Pokémon.
+	 * @param attack Le niveau d'attaque du Pokémon.
+	 * @param defense Le niveau de défense du Pokémon.
+	 * @param stamina Le niveau d'endurance du Pokémon.
+	 * @param cp Les points de combat (CP) du Pokémon.
+	 * @param hp Les points de vie (HP) du Pokémon.
+	 * @param dust La quantité de poussière d'étoile requise pour l'amélioration.
+	 * @param candy La quantité de bonbons requise pour l'amélioration.
+	 * @param iv Le pourcentage de perfection IV.
 	 */
 	public Pokemon(
 			final int index,
@@ -55,29 +57,49 @@ public final class Pokemon extends PokemonMetadata {
 		this.iv = iv;
 	}
 
-	/** Combat Point getter getter. **/
+	/**
+	 * Retourne les points de combat (CP) du Pokémon.
+	 *
+	 * @return Les points de combat (CP).
+	 */
 	public int getCp() {
 		return cp;
 	}
-	
-	/** HP getter. **/
+
+	/**
+	 * Retourne les points de vie (HP) du Pokémon.
+	 *
+	 * @return Les points de vie (HP).
+	 */
 	public int getHp() {
 		return hp;
 	}
 
-	/** Dust getter. **/
+	/**
+	 * Retourne la quantité de poussière d'étoile requise pour améliorer ce Pokémon.
+	 *
+	 * @return La quantité de poussière d'étoile.
+	 */
 	public int getDust() {
 		return dust;
 	}
 
-	/** Candy getter. **/
+	/**
+	 * Retourne la quantité de bonbons requise pour améliorer ce Pokémon.
+	 *
+	 * @return La quantité de bonbons.
+	 */
 	public int getCandy() {
 		return candy;
 	}
-	
-	/** IV getter. **/
+
+	/**
+	 * Retourne le pourcentage de perfection IV du Pokémon.
+	 *
+	 * @return Le pourcentage de perfection IV.
+	 */
 	public double getIv() {
 		return iv;
 	}
-	
+
 }
