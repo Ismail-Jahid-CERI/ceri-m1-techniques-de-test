@@ -4,53 +4,52 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
- * IPokedex interface. An IPokedex aims to store all information about
- * captured pokemon, as their default metadata as well.
- * 
+ * Interface IPokedex. Un IPokedex vise à stocker toutes les informations sur
+ * les Pokémon capturés, ainsi que leurs métadonnées par défaut.
+ *
  * @author fv
  */
 public interface IPokedex extends IPokemonMetadataProvider, IPokemonFactory {
-	
+
 	/**
-	 * Returns the number of pokemon this pokedex contains.
-	 * 
-	 * @return Number of pokemon in this pokedex.
+	 * Retourne le nombre de Pokémon que contient ce Pokédex.
+	 *
+	 * @return Nombre de Pokémon dans ce Pokédex.
 	 */
 	int size();
 
 
 	/**
-	 * Adds the given pokemon to this pokedex and returns
-	 * it unique index.
-	 * 
-	 * @param pokemon Pokemon to add to this pokedex.
-	 * @return Index of this pokemon relative to this pokedex.
+	 * Ajoute le Pokémon donné à ce Pokédex et retourne son index unique.
+	 *
+	 * @param pokemon Le Pokémon à ajouter à ce Pokédex.
+	 * @return Index de ce Pokémon par rapport à ce Pokédex.
 	 */
 	int addPokemon(Pokemon pokemon);
-	
+
 	/**
-	 * Locates the pokemon identified by the given id.
-	 * 
-	 * @param id Unique pokedex relative identifier.
-	 * @return Pokemon denoted by the given identifier.
-	 * @throws PokedexException If the given index is not valid.
+	 * Localise le Pokémon identifié par l'identifiant donné.
+	 *
+	 * @param id Identifiant unique relatif au Pokédex.
+	 * @return Pokémon désigné par l'identifiant donné.
+	 * @throws PokedexException Si l'index donné n'est pas valide.
 	 */
 	Pokemon getPokemon(int id) throws PokedexException;
-	
+
 	/**
-	 * Returns an unmodifiable list of all pokemons this pokedex contains.
-	 * 
-	 * @return Unmodifiable list of all pokemons.
+	 * Retourne une liste non modifiable de tous les Pokémon que contient ce Pokédex.
+	 *
+	 * @return Liste non modifiable de tous les Pokémon.
 	 */
 	List<Pokemon> getPokemons();
 
 	/**
-	 * Returns an unmodifiable list of all pokemons this pokedex contains.
-	 * The list view will be sorted using the given order.
-	 * 
-	 * @param order Comparator instance used for sorting the created view.
-	 * @return Sorted unmodifiable list of all pokemons.
+	 * Retourne une liste non modifiable de tous les Pokémon que contient ce Pokédex.
+	 * La vue de la liste sera triée en utilisant l'ordre donné.
+	 *
+	 * @param order Instance de comparateur utilisée pour trier la vue créée.
+	 * @return Liste triée et non modifiable de tous les Pokémon.
 	 */
 	List<Pokemon> getPokemons(Comparator<Pokemon> order);
-	
+
 }
