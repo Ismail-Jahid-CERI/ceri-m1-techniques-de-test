@@ -48,7 +48,8 @@ jobs:
             git rm -rf .
             git add checkstyle-status.json
             git commit -m "Add Checkstyle status"
-            git push origin gh-pages
+            git push --force origin gh-pages
+  
   
 
   test:
