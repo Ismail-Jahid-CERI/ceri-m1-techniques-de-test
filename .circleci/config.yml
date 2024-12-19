@@ -25,9 +25,9 @@ jobs:
           name: Generate Checkstyle Status JSON
           command: |
             if grep -q "<error" target/site/checkstyle-result.xml; then
-              echo '{"status": "échoué"}' > checkstyle-status.json
+              echo '{"schemaVersion": 1, "label": "Checkstyle", "message": "échoué", "color": "critical"}' > checkstyle-status.json
             else
-              echo '{"status": "réussi"}' > checkstyle-status.json
+              echo '{"schemaVersion": 1, "label": "Checkstyle", "message": "réussi", "color": "success"}' > checkstyle-status.json
             fi
       - store_artifacts:
           path: checkstyle-status.json
