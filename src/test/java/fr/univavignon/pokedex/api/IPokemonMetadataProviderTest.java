@@ -45,8 +45,7 @@ public class IPokemonMetadataProviderTest {
             provider.getPokemonMetadata(999);
             fail("Expected a PokedexException to be thrown");
         } catch (PokedexException e) {
-            assertEquals("Invalid Pokémon index: 999", e.getMessage());
-        }
+            assertEquals("Index de Pokémon invalide : 999", e.getMessage());        }
     }
 
 

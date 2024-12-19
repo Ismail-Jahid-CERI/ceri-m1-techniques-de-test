@@ -124,32 +124,31 @@ public class IPokedexTest {
 
     @Test
     public void testGetPokemonWithInvalidIndex() {
-        // Mock des dépendances
+
         IPokemonMetadataProvider metadataProvider = mock(IPokemonMetadataProvider.class);
         IPokemonFactory pokemonFactory = mock(IPokemonFactory.class);
 
-        // Initialisation du Pokédex
+
         Pokedex pokedex = new Pokedex(metadataProvider, pokemonFactory);
 
-        // Test des indices invalides
+
         try {
             pokedex.getPokemon(-1);
             fail("Expected PokedexException for negative index.");
         } catch (PokedexException e) {
-            assertEquals("Invalid Pokémon index: -1", e.getMessage());
-        }
+            assertEquals("Index de Pokémon invalide : -1", e.getMessage());        }
 
         try {
             pokedex.getPokemon(100);
             fail("Expected PokedexException for out-of-bound index.");
         } catch (PokedexException e) {
-            assertEquals("Invalid Pokémon index: 100", e.getMessage());
+            assertEquals("Index de Pokémon invalide : 100", e.getMessage());
         }
     }
 
     @Test
     public void testCreatePokemon() {
-        // Mock de IPokemonFactory
+
         IPokemonFactory pokemonFactory = mock(IPokemonFactory.class);
         IPokemonMetadataProvider metadataProvider = mock(IPokemonMetadataProvider.class);
 
